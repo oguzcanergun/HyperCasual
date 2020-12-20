@@ -25,7 +25,7 @@ public class MenuMethods : MonoBehaviour
     [HideInInspector] public Text levelText;
     [HideInInspector] public Text audioText;
 
-    private AudioListener mainAudioListener;
+    private AudioSource mainAudioSource;
 
     private void Start()
     {
@@ -57,8 +57,8 @@ public class MenuMethods : MonoBehaviour
 
     public void OnSoundToggle()
     {
-        mainAudioListener.enabled = !mainAudioListener.enabled;
-        audioText.text = (mainAudioListener.enabled) ? "Sound: On" : "Sound: Off";
+        mainAudioSource.enabled = !mainAudioSource.enabled;
+        audioText.text = (mainAudioSource.enabled) ? "Sound: On" : "Sound: Off";
     }
 
     public void OnMainMenu()
@@ -146,8 +146,8 @@ public class MenuMethods : MonoBehaviour
         else
         {
             levelText.text = "Level: " + SceneManager.GetActiveScene().buildIndex;
-            mainAudioListener = mainCamera.GetComponent<AudioListener>();
-            audioText.text = (mainAudioListener.enabled) ? "Sound: On" : "Sound: Off";
+            mainAudioSource = gameObject.GetComponent<AudioSource>();
+            audioText.text = (mainAudioSource.enabled) ? "Sound: On" : "Sound: Off";
             panelSettings.SetActive(false);
             panelGameOver.SetActive(false);
             panelLevelComplete.SetActive(false);
